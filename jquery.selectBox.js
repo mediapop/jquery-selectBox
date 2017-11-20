@@ -507,7 +507,9 @@
                 left: control.offset().left
             })
             // Add Top and Bottom class based on position
-            .addClass('selectBox-options selectBox-options-'+(posTop?'top':'bottom'));
+            // .addClass('selectBox-options selectBox-options-'+(posTop?'top':'bottom'));
+            // FORCE Bottom class
+           .addClass('selectBox-options selectBox-options-bottom');
 
 		if (settings.styleClass) {
 			options.addClass(settings.styleClass);
@@ -544,8 +546,10 @@
         var li = options.find('.selectBox-selected:first');
         this.keepOptionInView(li, true);
         this.addHover(li);
-        control.addClass('selectBox-menuShowing selectBox-menuShowing-'+(posTop?'top':'bottom'));
-
+        // control.addClass('selectBox-menuShowing selectBox-menuShowing-'+(posTop?'top':'bottom'));
+        // FORCE Bottom class
+        control.addClass('selectBox-menuShowing selectBox-menuShowing-bottom');
+        control.parent('div').addClass('invert');
         $(document).bind('mousedown.selectBox', function (event) {
             if (1 === event.which) {
                 if ($(event.target).parents().addBack().hasClass('selectBox-options')) {
@@ -596,18 +600,23 @@
                 if (!settings.menuSpeed) {
                     dispatchCloseEvent();
                 }
-                control.removeClass('selectBox-menuShowing selectBox-menuShowing-'+(posTop?'top':'bottom'));
+                // control.removeClass('selectBox-menuShowing selectBox-menuShowing-'+(posTop?'top':'bottom'));
+                control.removeClass('selectBox-menuShowing selectBox-menuShowing-bottom');
+                control.parent('div').removeClass('invert');
             } else {
                 $(this).hide();
                 $(this).triggerHandler('close', {
                     _selectBox: true
                 });
-                $(this).removeClass('selectBox-menuShowing selectBox-menuShowing-'+(posTop?'top':'bottom'));
+                // $(this).removeClass('selectBox-menuShowing selectBox-menuShowing-'+(posTop?'top':'bottom'));
+                $(this).removeClass('selectBox-menuShowing selectBox-menuShowing-bottom');
+
             }
 
             options.css('max-height','');
             //Remove Top or Bottom class based on position
-            options.removeClass('selectBox-options-'+(posTop?'top':'bottom'));
+            // options.removeClass('selectBox-options-'+(posTop?'top':'bottom'));
+            options.removeClass('selectBox-options-bottom');
             options.data('posTop' , false);
         });
     };
