@@ -475,9 +475,11 @@
             , heightToBottom = $(window).height() - ( heightToTop + controlHeight )
             , posTop = (heightToTop > heightToBottom) && (settings.keepInViewport == null ? true : settings.keepInViewport)
             , width = control.innerWidth() >= options.innerWidth() ? control.innerWidth() + 'px' : 'auto'
-            , top = posTop
-                  ? pos.top - optionsHeight + borderTopWidth + topPositionCorrelation
-                  : pos.top + controlHeight - borderBottomWidth - bottomPositionCorrelation;
+            // , top = posTop
+            //       ? pos.top - optionsHeight + borderTopWidth + topPositionCorrelation
+            //       : pos.top + controlHeight - borderBottomWidth - bottomPositionCorrelation;
+            //force bottom calculation only
+            , top = pos.top + controlHeight - borderBottomWidth - bottomPositionCorrelation;
 
 
         // If the height to top and height to bottom are less than the max-height
